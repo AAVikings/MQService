@@ -24,7 +24,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "marginEnabled": true, // true | false --> 1|0
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "type": "Market|Limit|Stop", // --> "M|L|S"
-    "orderId": 31231, // This is a unique Id within the system that originated the message.
+    "orderId": 31231, // This is a unique Id within the system that originated the order.
     "executionType": "Stop|Take Profit", // --> "SP|TP"
     "dateTime": 1551579300000,
     "rate": 6368.10044495,
