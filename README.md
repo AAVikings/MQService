@@ -1,6 +1,16 @@
 # MQService
 
-Within code to make it better understandable and maintainable, and abbreviations when these messages are written to files for storage or sharing using files.
+The MQService is a process running at each Superalgos Node that enables the communication between system components in general. Components can send messages between them through this service or raise events for other to listen and react to them.
+
+This does not mean to eliminate micro-service API access but to complement it. Well known components are better to be accesed thouth their static APIs. Components like bots instances, which are not allways running might prefer to communicate themselves through this MQService.
+
+## Messages Formats
+
+We are going to be slowly transitioning the current infraestructure to use this messaging service. For the first set of use cases we already know a message format we will use and is the one described in this section. Expect this to be extended / improved as we move fordward.
+
+### Trading Orders related Messages
+
+With this format we will enable communications between the Simulation Engine, Simulation Executor, Trading Cockpit and Trading Assistant. We expect that messages flowing between these components to be in this agreed format, while messages logged into files should go through a minification process to save space.
 
 ```
 {
@@ -28,7 +38,7 @@ Within code to make it better understandable and maintainable, and abbreviations
 }
 ```
 
-Record Example at to be written on files.
+Record Example to be written on files.
 
 ```
 let record = ["SE", "TA", "ARQ", 23234, ["Poloniex", "BTC/USDST",0,"SE", "L", 12345, "S", 1551579300000, 6368.10044495, 6368.10044495, 6368.10044495, "S", 0.001, "FIL", 0.00045]];
