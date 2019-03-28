@@ -42,9 +42,9 @@ When writing this information in files for logging or audit purposes, we will tu
 
 ```
 let record = [
-"SE", 
-"TA", "
-ARQ", 
+"SEX", 
+"ASS", 
+"ARQ", 
 23234, 
 [
   "Poloniex", 
