@@ -21,11 +21,11 @@ With this format we will enable communications between the Simulation Engine, Si
   "dateTime": 1551579300000,
   "order": {
     "orderId": 31231, // This is a unique Id within the system component that originated the order.
+    "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "owner": "Node/Team/User",
     "exchange": "Poloniex",
     "market": "BTC/USDST",
     "marginEnabled": true, // true | false --> 1|0
-    "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "type": "Market|Limit|Stop", // --> "M|L|S"
     "rate": 6368.10044495,
     "stop": 6463.62195162425,
