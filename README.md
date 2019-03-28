@@ -18,6 +18,7 @@ With this format we will enable communications between the Simulation Engine, Si
   "to": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "messageType": "Heart Beat|Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "HBT|ARQ|ARS|ORD|UPT"
   "messageId": 12345, // This is a unique Id within the system component that originated the message.
+  "dateTime": 1551579300000,
   "order": {
     "owner": "Node/Team/User",
     "exchange": "Poloniex",
@@ -26,7 +27,6 @@ With this format we will enable communications between the Simulation Engine, Si
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "type": "Market|Limit|Stop", // --> "M|L|S"
     "orderId": 31231, // This is a unique Id within the system component that originated the order.
-    "dateTime": 1551579300000,
     "rate": 6368.10044495,
     "stop": 6463.62195162425,
     "takeProfit": 6463.62195162425,
