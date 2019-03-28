@@ -32,7 +32,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "takeProfit": 6463.62195162425,
     "direction": "Sell|Buy", // --> "Sell|Buy"
     "size": 0.001,
-    "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS"
+    "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded|Placed", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS|PLA"
     "sizeFilled": 0.00045
   }
 }
@@ -80,8 +80,8 @@ There are a few situations in which the Simulation Executor might need to reject
 
 ### Lifecycle for the Orders to exit a Trade
 
-The Simulation Executior will be managing the Stop and Take Profit levels according to the information that receives from the Simulation Engine. To do that, it places a Limit Order and a Stop Order at the Exchange through the Trading Assistant. As times goes by, it moves those orders according to the feed it is receiving from the Simulation Engine. 
+The Simulation Executor will be managing the Stop and Take Profit levels according to the information that receives from the Simulation Engine. To do that, it places a Limit Order and a Stop Order at the Exchange through the Trading Assistant. As times goes by, it moves those orders according to the feed it is receiving from the Simulation Engine. 
 
-Once those orders are created and sent to the Trading Assistant, their status is "Placed". We dont expect those two to be executed inmidiatelly in most cases. From there they could turn into "Filled", "Partially Filled" or "Cancelled" depending of what happens inside the exchange.
+Once those orders are created and sent to the Trading Assistant, their status becomes "Placed". We dont expect those two to be executed inmidiatelly in most cases. From there they could turn into "Filled", "Partially Filled" or "Cancelled" depending on what happens inside the exchange.
 
-In our current version there is no manual or automated human intervention in this situations, meaning that the Trading Cokpit is not involved.
+In our current version there is no manual or automated human intervention in this situation, meaning that the Trading Cokpit is not involved.
