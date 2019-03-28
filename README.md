@@ -14,8 +14,8 @@ With this format we will enable communications between the Simulation Engine, Si
 
 ```
 {
-  "from": "Simulation Executor|Trading Cokpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
-  "to": "Simulation Executor|Trading Cokpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
+  "from": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
+  "to": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "messageType": "Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "ARQ|ARS|ORD|UPT"
   "messageId": 12345, // This is a unique Id within the system that originated the message.
   "order": {
@@ -66,7 +66,7 @@ ARQ",
 ];
 ```
 
-### Order Lifecycle
+### Lifecycle for the Orders to enter a Trade
 
 An order can be created by the Simulation Engine or by a Human Trader. 
 
@@ -77,3 +77,11 @@ If it is created by a Human Trader from the Trading Cockpit the initial status i
 The Simulation Executor then send the order to the Trading Assistant at which point its status become "Executing". From there and depending on what happens inside the exchange the order can end up being "Cancelled", "Filled" or "Partially Filled". In the last case, and with enought time, the order could finally turn into "Filled".
 
 There are a few situations in which the Simulation Executor might need to reject an order: for example if it forwared an order previously authorized to the Trading Assistant and it receives a new one from the Simulation Engine. It might also happen that it receives an order from the Human Trader while an order is already in "Executing" state or one that follows them. In these scenarios, the received order status is set to "Discarded".
+
+### Lifecycle for the Orders to exit a Trade
+
+The Simulation Executior will be managing the Stop and Take Profit levels according to the information that receives from the Simulation Engine. To do that, it places a Limit Order and a Stop Order at the Exchange through the Trading Assistant. As times goes by, it moves those orders according to the feed it is receiving from the Simulation Engine. 
+
+Once those orders are created and sent to the Trading Assistant, their status is "Placed". We dont expect those two to be executed inmidiatelly in most cases. From there they could turn into "Filled", "Partially Filled" or "Cancelled" depending of what happens inside the exchange.
+
+In our current version there is no manual or automated human intervention in this situations, meaning that the Trading Cokpit is not involved.
