@@ -41,5 +41,25 @@ With this format we will enable communications between the Simulation Engine, Si
 Record Example to be written on files.
 
 ```
-let record = ["SE", "TA", "ARQ", 23234, ["Poloniex", "BTC/USDST",0,"SE", "L", 12345, "S", 1551579300000, 6368.10044495, 6368.10044495, 6368.10044495, "S", 0.001, "FIL", 0.00045]];
+let record = [
+"SE", 
+"TA", "
+ARQ", 
+23234, 
+["Poloniex", 
+"BTC/USDST",
+0,
+"SE", 
+"L", 
+12345, 
+"S", 
+1551579300000, 
+6368.10044495, 
+6368.10044495, 
+6368.10044495, 
+"S", 
+0.001, 
+"FIL", 
+0.00045]
+];
 ```
