@@ -25,7 +25,6 @@ With this format we will enable communications between the Simulation Engine, Si
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "type": "Market|Limit|Stop", // --> "M|L|S"
     "orderId": 31231, // This is a unique Id within the system component that originated the order.
-    "executionType": "Stop|Take Profit", // --> "SP|TP"
     "dateTime": 1551579300000,
     "rate": 6368.10044495,
     "stop": 6463.62195162425,
@@ -33,7 +32,8 @@ With this format we will enable communications between the Simulation Engine, Si
     "direction": "Sell|Buy", // --> "Sell|Buy"
     "size": 0.001,
     "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded|Placed", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS|PLA"
-    "sizeFilled": 0.00045
+    "sizeFilled": 0.00045,
+    "exitOutcome": "Stop|Take Profit", // --> "SP|TP"
   }
 }
 ```
