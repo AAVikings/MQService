@@ -38,7 +38,7 @@ With this format we will enable communications between the Simulation Engine, Si
 }
 ```
 
-Record Example to be written on files.
+When writing this information in files for logging or audit purposes, we will turn int into an array of fields where the order of them is relevant. The following is a record example of how the previous object would be recorded into a file.
 
 ```
 let record = [
