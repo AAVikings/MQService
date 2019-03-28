@@ -16,7 +16,7 @@ With this format we will enable communications between the Simulation Engine, Si
 {
   "from": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "to": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
-  "messageType": "Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "ARQ|ARS|ORD|UPT"
+  "messageType": "Heart Beat|Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "HBT|ARQ|ARS|ORD|UPT"
   "messageId": 12345, // This is a unique Id within the system component that originated the message.
   "order": {
     "owner": "Node/Team/User",
