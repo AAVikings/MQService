@@ -31,7 +31,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "stop": 6463.62195162425,
     "takeProfit": 6463.62195162425,
     "direction": "Sell|Buy", // --> "Sell|Buy"
-    "size": 0.001,
+    "size": "floating-point number|All", // All means to use all the available balance. 
     "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded|Placed", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS|PLA"
     "sizeFilled": 0.00045,
     "exitOutcome": "Stop Loss|Take Profit" // --> "SL|TP"
