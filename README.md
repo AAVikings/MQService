@@ -10,7 +10,7 @@ We are going to be slowly transitioning the current infraestructure to use this 
 
 ### Trading Orders related Messages
 
-With this format we will enable communications between the Simulation Engine, Simulation Executor, Trading Cockpit and Trading Assistant. We expect that messages flowing between these components to be in this agreed format, while messages logged into files should go through a minification process to save space.
+With this format we will enable communications between the Simulation Engine, Simulation Executor, Trading Cockpit and Trading Assistant. We expect that messages flowing between these components to be in this agreed format, while messages logged into files should go through a minification process to save space. The minification process criteria is not the about taking the messages to their absolute minimun weight but to a balance where the weight is small but at the same time understandable by a human with enough contect while reading them on a file.
 
 ```
 {
@@ -30,7 +30,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "rate": 6368.10044495,
     "stop": 6463.62195162425,
     "takeProfit": 6463.62195162425,
-    "direction": "Sell|Buy", // --> "S|B"
+    "direction": "Sell|Buy", // --> "Sell|Buy"
     "size": 0.001,
     "status": "Signaled|Authorized|Not Authorized|Executing|Cancelled|Filled|Partially Filled", // --> "SIG|AUT|NAT|EXE|CAN|FIL|PRT"
     "sizeFilled": 0.00045
@@ -46,20 +46,22 @@ let record = [
 "TA", "
 ARQ", 
 23234, 
-["Poloniex", 
-"BTC/USDST",
-0,
-"SE", 
-"L", 
-12345, 
-"S", 
-1551579300000, 
-6368.10044495, 
-6368.10044495, 
-6368.10044495, 
-"S", 
-0.001, 
-"FIL", 
-0.00045]
+[
+  "Poloniex", 
+  "BTC/USDST",
+  0,
+  "SE", 
+  "L", 
+  12345, 
+  "SP", 
+  1551579300000, 
+  6368.10044495, 
+  6368.10044495, 
+  6368.10044495, 
+  "Sell", 
+  0.001, 
+  "FIL", 
+  0.00045
+  ]
 ];
 ```
