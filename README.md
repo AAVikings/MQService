@@ -2,6 +2,7 @@
 
 Within code to make it better understandable and maintainable, and abbreviations when these messages are written to files for storage or sharing using files.
 
+```
 {
   "from": "Simulation Executor|Trading Cokpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "to": "Simulation Executor|Trading Cokpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
@@ -25,7 +26,10 @@ Within code to make it better understandable and maintainable, and abbreviations
     "sizeFilled": 0.00045
   }
 }
+```
 
 Record Example at to be written on files.
 
+```
 let record = ["SE", "TA", "ARQ", 23234, ["Poloniex", "BTC/USDST",0,"SE", "L", 12345, "S", 1551579300000, 6368.10044495, 6368.10044495, 6368.10044495, "S", 0.001, "FIL", 0.00045]];
+```
