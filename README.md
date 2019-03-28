@@ -19,6 +19,7 @@ With this format we will enable communications between the Simulation Engine, Si
   "messageType": "Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "ARQ|ARS|ORD|UPT"
   "messageId": 12345, // This is a unique Id within the system component that originated the message.
   "order": {
+    "owner": "Node/Team/User",
     "exchange": "Poloniex",
     "market": "BTC/USDST",
     "marginEnabled": true, // true | false --> 1|0
