@@ -32,7 +32,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "takeProfit": 6463.62195162425,
     "direction": "Sell|Buy", // --> "Sell|Buy"
     "size": 0.001,
-    "status": "Signaled|Authorized|Not Authorized|Executing|Cancelled|Filled|Partially Filled", // --> "SIG|AUT|NAT|EXE|CAN|FIL|PRT"
+    "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS"
     "sizeFilled": 0.00045
   }
 }
@@ -65,3 +65,15 @@ ARQ",
   ]
 ];
 ```
+
+### Order Lifecycle
+
+An order can be created by the Simulation Engine or by a Human Trader. 
+
+It is created by the Simulation Engine as a result of processing the strategies defined at the Strategizer. In this case it's initial status is "Signaled". Once the order reaches the Simulation Executor in this initial state, it needs to be authorized at the Trading Cockpit. There the Human Trader can set it into the possible status of "Manually Authorized" or "Manually Not Authorized". It can also happen that the Human Traders have set some Autopilot instructions, in which case the orders could get into "Auto Authorized" or "Auto Not Authorized".  
+
+If it is created by a Human Trader from the Trading Cockpit the initial status is "Ordered". Once it gets into the Simulation Executor this status does not requires further authorization.
+
+The Simulation Executor then send the order to the Trading Assistant at which point its status become "Executing". From there and depending on what happens inside the exchange the order can end up being "Cancelled", "Filled" or "Partially Filled". In the last case, and with enought time, the order could finally turn into "Filled".
+
+There are a few situations in which the Simulation Executor might need to reject an order: for example if it forwared an order previously authorized to the Trading Assistant and it receives a new one from the Simulation Engine. It might also happen that it receives an order from the Human Trader while an order is already in "Executing" state or one that follows them. In these scenarios, the order received status is set to "Discarded".
