@@ -20,13 +20,13 @@ With this format we will enable communications between the Simulation Engine, Si
   "messageId": 12345, // This is a unique Id within the system component that originated the message.
   "dateTime": 1551579300000,
   "order": {
+    "orderId": 31231, // This is a unique Id within the system component that originated the order.
     "owner": "Node/Team/User",
     "exchange": "Poloniex",
     "market": "BTC/USDST",
     "marginEnabled": true, // true | false --> 1|0
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "type": "Market|Limit|Stop", // --> "M|L|S"
-    "orderId": 31231, // This is a unique Id within the system component that originated the order.
     "rate": 6368.10044495,
     "stop": 6463.62195162425,
     "takeProfit": 6463.62195162425,
