@@ -33,7 +33,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "size": 0.001,
     "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded|Placed", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS|PLA"
     "sizeFilled": 0.00045,
-    "exitOutcome": "Stop|Take Profit" // --> "SP|TP"
+    "exitOutcome": "Stop Loss|Take Profit" // --> "SL|TP"
   }
 }
 ```
