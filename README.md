@@ -75,6 +75,11 @@ Heartbeat example:
 ```
 [1,"SEN","SEX","HBT",1553850096045,[0,"","","","",0,"",0,0,0,"","","",0,""]]
 ```
+Order created by the Simulation Engine example:
+
+```
+[90,"SEN","SEX","Order",1553850096262,[1,"SE","Node/Team/User","Poloniex","BTC/USDT",0,"L",6286.707,6381.007605000001,0,"Sell","All","Signaled",0,""]]
+```
 
 ### Lifecycle for the Orders to enter a Trade
 
