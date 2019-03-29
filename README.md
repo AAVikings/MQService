@@ -23,7 +23,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "id": 31231, // This is a unique Id within the system component that originated the order.
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "dateTime": 1551579300000, // This is the datetime when the order was created. After the order travels from one system componet to the other it becomes diffrent from the message.datetime.
-    "owner": "Node/Team/User",
+    "owner": "Node/Team/User",  // Once we have our login system at a node level, here it will come this info. 
     "exchange": "Poloniex",
     "market": "BTC/USDST",
     "marginEnabled": true, // true | false --> 1|0
@@ -44,26 +44,28 @@ When writing this information in files for logging or audit purposes, we will tu
 
 ```
 let record = [
+23234, 
 "SEX", 
 "ASS", 
 "ARQ", 
-23234, 
+1551579300000,
 [
+  12345, 
+  "SE", 
+  1551579300000,
+  "Node/Team/User",
   "Poloniex", 
   "BTC/USDST",
   0,
-  "SE", 
   "L", 
-  12345, 
-  "SP", 
-  1551579300000, 
   6368.10044495, 
   6368.10044495, 
   6368.10044495, 
   "Sell", 
-  0.001, 
+  "0.001", 
   "FIL", 
-  0.00045
+  0.00045,
+  "SL"
   ]
 ];
 ```
