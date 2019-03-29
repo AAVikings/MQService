@@ -96,7 +96,7 @@ Once those orders are created and sent to the Trading Assistant, their status be
 
 In our current version there is no manual or automated human intervention in this situation, meaning that the Trading Cokpit is not involved.
 
-### Usage
+## Usage
 
 ```
 npm install @superalgos/mqservice
