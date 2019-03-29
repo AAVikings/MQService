@@ -98,6 +98,10 @@ In our current version there is no manual or automated human intervention in thi
 
 ### Usage
 
+```
+npm install @superalgos/mqservice
+```
+
 After npm install, use the following code to use the library.
 
 ```
