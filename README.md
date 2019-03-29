@@ -42,19 +42,6 @@ With this format we will enable communications between the Simulation Engine, Si
 
 When writing this information in files for logging or audit purposes, we will turn int into an array of fields where the order of them is relevant. The following is a record example of how the previous object would be recorded into a file.
 
-Creating a new Record
-
-const {
-  MESSAGE_ENTITY, MESSAGE_TYPE, ORDER_CREATOR, ORDER_TYPE,
-  ORDER_OWNER, ORDER_DIRECTION, ORDER_STATUS, ORDER_EXIT_OUTCOME,
-  createRecord
-} = require("@superalgos/mqservice")
-
-let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
-    MESSAGE_TYPE.Order, 1553850096262, 1, ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
-    "Poloniex", "BTC/USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
-    ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
-
 ```
 let record = [
   90,
@@ -108,3 +95,20 @@ The Simulation Executor will be managing the Stop and Take Profit levels accordi
 Once those orders are created and sent to the Trading Assistant, their status becomes "Placed". We dont expect those two to be executed inmidiatelly in most cases. From there they could turn into "Filled", "Partially Filled" or "Cancelled" depending on what happens inside the exchange.
 
 In our current version there is no manual or automated human intervention in this situation, meaning that the Trading Cokpit is not involved.
+
+### Usage
+
+After npm install, use the following code to use the library.
+
+```
+const {
+  MESSAGE_ENTITY, MESSAGE_TYPE, ORDER_CREATOR, ORDER_TYPE,
+  ORDER_OWNER, ORDER_DIRECTION, ORDER_STATUS, ORDER_EXIT_OUTCOME,
+  createRecord
+} = require("@superalgos/mqservice")
+
+let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
+    MESSAGE_TYPE.Order, 1553850096262, 1, ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
+    "Poloniex", "BTC/USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
+    ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
+```
