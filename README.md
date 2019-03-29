@@ -14,13 +14,13 @@ With this format we will enable communications between the Simulation Engine, Si
 
 ```
 {
+  "id": 12345, // This is a unique Id within the system component that originated the message.
   "from": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "to": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "SEX|COK|SEN|ASS"
   "messageType": "Heart Beat|Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "HBT|ARQ|ARS|ORD|UPT"
-  "messageId": 12345, // This is a unique Id within the system component that originated the message.
-  "dateTime": 1551579300000,
+  "dateTime": 1551579300000, // This is the timestamp of the message.
   "order": {
-    "orderId": 31231, // This is a unique Id within the system component that originated the order.
+    "id": 31231, // This is a unique Id within the system component that originated the order.
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
     "owner": "Node/Team/User",
     "exchange": "Poloniex",
