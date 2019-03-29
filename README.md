@@ -70,6 +70,12 @@ let record = [
 ];
 ```
 
+Heartbeat example:
+
+```
+[1,"SEN","SEX","HBT",1553850096045,[0,"","","","",0,"",0,0,0,"","","",0,""]]
+```
+
 ### Lifecycle for the Orders to enter a Trade
 
 An order can be created by the Simulation Engine or by a Human Trader. 
