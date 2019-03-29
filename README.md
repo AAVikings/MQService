@@ -108,7 +108,7 @@ After npm install, use the following code to use the library.
 const {
   MESSAGE_ENTITY, MESSAGE_TYPE, ORDER_CREATOR, ORDER_TYPE,
   ORDER_OWNER, ORDER_DIRECTION, ORDER_STATUS, ORDER_EXIT_OUTCOME,
-  createRecord
+  createRecord, getRecord, getExpandedRecord
 } = require("@superalgos/mqservice")
 
 let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
@@ -116,3 +116,17 @@ let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.Si
     "Poloniex", "BTC/USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
     ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
 ```
+
+### createRecord
+
+Returns an Array that can be used to write the information to a file.
+
+### getRecord
+
+Receives an array identical to the one created with createRecord and converts it to a JSON object with some fields values abbreviated.
+
+### getExpandedRecord
+
+Receives an array identical to the one created with createRecord and converts it to a JSON object with some fields values with full lenght.
+
+
