@@ -22,7 +22,7 @@ With this format we will enable communications between the Simulation Engine, Si
   "order": {
     "id": 31231, // This is a unique Id within the system component that originated the order.
     "creator": "Simulation Engine|Human Trader", // --> "SE|HT"
-    "dateTime": 1551579300000, // This is the datetime when the order was created. After the order travels it becomes diffrent from the message.datetime.
+    "dateTime": 1551579300000, // This is the datetime when the order was created. After the order travels from one system componet to the other it becomes diffrent from the message.datetime.
     "owner": "Node/Team/User",
     "exchange": "Poloniex",
     "market": "BTC/USDST",
