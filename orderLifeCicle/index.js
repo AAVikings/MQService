@@ -27,11 +27,11 @@ const ORDER_STATUS = {
   PartiallyFilled: 'PRT', // The order is partially filled and is still on the exchange
   Discarded: 'DIS', // Order discarded since there is already an order in place
   Placed: 'PLA', // Order has been just been placed on the exchange
-  Rejected:'REJ', // Order has been rejected by the exchange due to some error
-  Undeliverable:'UND' // The order was not able to be delivered to the exchange
+  Rejected: 'REJ', // Order has been rejected by the exchange due to some error
+  Undeliverable: 'UND' // The order was not able to be delivered to the exchange
 }
-const ORDER_EXIT_OUTCOME = {  StopLoss: 'SL', TakeProfit: 'TP' }
-const ORDER_MARGIN_ENABLED = {  True: 1, False: 0 }
+const ORDER_EXIT_OUTCOME = { StopLoss: 'SL', TakeProfit: 'TP' }
+const ORDER_MARGIN_ENABLED = { True: 1, False: 0 }
 
 function createRecord(messageId, from, to, messageType, messageDateTime, orderId, creator, orderDateTime,
   owner, exchange, market, marginEnabled, type, rate, stop, takeProfit, direction, size, status, sizeFilled, exitOutcome) {
@@ -72,61 +72,57 @@ function createRecordFromObject(object) {
 }
 
 function getRecord(fileContent) {
-  let parsedFileContent = JSON.parse(fileContent)
-
   return {
-    id: parsedFileContent[0],
-    from: parsedFileContent[1],
-    to: parsedFileContent[2],
-    messageType: parsedFileContent[3],
-    dateTime: parsedFileContent[4],
+    id: fileContent[0],
+    from: fileContent[1],
+    to: fileContent[2],
+    messageType: fileContent[3],
+    dateTime: fileContent[4],
     order: {
-      id: parsedFileContent[5][0],
-      creator: parsedFileContent[5][1],
-      dateTime: parsedFileContent[5][2],
-      owner: parsedFileContent[5][3],
-      exchange: parsedFileContent[5][4],
-      market: parsedFileContent[5][5],
-      marginEnabled: parsedFileContent[5][6],
-      type: parsedFileContent[5][7],
-      rate: parsedFileContent[5][8],
-      stop: parsedFileContent[5][9],
-      takeProfit: parsedFileContent[5][10],
-      direction: parsedFileContent[5][11],
-      size: parsedFileContent[5][12],
-      status: parsedFileContent[5][13],
-      sizeFilled: parsedFileContent[5][14],
-      exitOutcome: parsedFileContent[5][15]
+      id: fileContent[5][0],
+      creator: fileContent[5][1],
+      dateTime: fileContent[5][2],
+      owner: fileContent[5][3],
+      exchange: fileContent[5][4],
+      market: fileContent[5][5],
+      marginEnabled: fileContent[5][6],
+      type: fileContent[5][7],
+      rate: fileContent[5][8],
+      stop: fileContent[5][9],
+      takeProfit: fileContent[5][10],
+      direction: fileContent[5][11],
+      size: fileContent[5][12],
+      status: fileContent[5][13],
+      sizeFilled: fileContent[5][14],
+      exitOutcome: fileContent[5][15]
     }
   }
 }
 
 function getExpandedRecord(fileContent) {
-  let parsedFileContent = JSON.parse(fileContent)
-
   return {
-    id: parsedFileContent[0],
-    from: getKeyByValue(MESSAGE_ENTITY, parsedFileContent[1]),
-    to: getKeyByValue(MESSAGE_ENTITY, parsedFileContent[2]),
-    messageType: getKeyByValue(MESSAGE_TYPE, parsedFileContent[3]),
-    dateTime: parsedFileContent[4],
+    id: fileContent[0],
+    from: getKeyByValue(MESSAGE_ENTITY, fileContent[1]),
+    to: getKeyByValue(MESSAGE_ENTITY, fileContent[2]),
+    messageType: getKeyByValue(MESSAGE_TYPE, fileContent[3]),
+    dateTime: fileContent[4],
     order: {
-      id: parsedFileContent[5][0],
-      creator: getKeyByValue(ORDER_CREATOR, parsedFileContent[5][1]),
-      dateTime: parsedFileContent[5][2],
-      owner: getKeyByValue(ORDER_OWNER, parsedFileContent[5][3]),
-      exchange: parsedFileContent[5][4],
-      market: parsedFileContent[5][5],
-      marginEnabled: getKeyByValue(ORDER_MARGIN_ENABLED, parsedFileContent[5][6]),
-      type: getKeyByValue(ORDER_TYPE, parsedFileContent[5][7]),
-      rate: parsedFileContent[5][8],
-      stop: parsedFileContent[5][9],
-      takeProfit: parsedFileContent[5][10],
-      direction: getKeyByValue(ORDER_DIRECTION, parsedFileContent[5][11]),
-      size: parsedFileContent[5][12],
-      status: getKeyByValue(ORDER_STATUS, parsedFileContent[5][13]),
-      sizeFilled: parsedFileContent[5][14],
-      exitOutcome: getKeyByValue(ORDER_EXIT_OUTCOME, parsedFileContent[5][15])
+      id: fileContent[5][0],
+      creator: getKeyByValue(ORDER_CREATOR, fileContent[5][1]),
+      dateTime: fileContent[5][2],
+      owner: getKeyByValue(ORDER_OWNER, fileContent[5][3]),
+      exchange: fileContent[5][4],
+      market: fileContent[5][5],
+      marginEnabled: getKeyByValue(ORDER_MARGIN_ENABLED, fileContent[5][6]),
+      type: getKeyByValue(ORDER_TYPE, fileContent[5][7]),
+      rate: fileContent[5][8],
+      stop: fileContent[5][9],
+      takeProfit: fileContent[5][10],
+      direction: getKeyByValue(ORDER_DIRECTION, fileContent[5][11]),
+      size: fileContent[5][12],
+      status: getKeyByValue(ORDER_STATUS, fileContent[5][13]),
+      sizeFilled: fileContent[5][14],
+      exitOutcome: getKeyByValue(ORDER_EXIT_OUTCOME, fileContent[5][15])
     }
   }
 }

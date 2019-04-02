@@ -1,6 +1,6 @@
 {
   "name": "@superalgos/mqservice",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "Provide a common framework for objects between different modules.",
   "main": "index.js",
   "scripts": {
