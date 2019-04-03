@@ -88,6 +88,24 @@ The Simulation Executor then send the order to the Trading Assistant at which po
 
 There are a few situations in which the Simulation Executor might need to reject an order: for example if it forwared an order previously authorized to the Trading Assistant and it receives a new one from the Simulation Engine. It might also happen that it receives an order from the Human Trader while an order is already in "Executing" state or one that follows them. In these scenarios, the received order status is set to "Discarded".
 
+```
+const ORDER_STATUS = {
+  Signaled: 'SIG', // The order has been created and is ready to be authorized
+  ManualAuthorized: 'MAU', // Authorized by the user manually
+  ManualNotAuthorized: 'MNA', // Rejected by the user manually
+  AutoAuthorized: 'AAU', // Authorize all as been selected by the user
+  AutoNotAuthorized: 'ANA', // Reject all as been selected by the user
+  Executing: 'EXE', // The order is efectively being executed on the exchange
+  Cancelled: 'CAN', // The order has been canceled
+  Filled: 'FIL',  // The order bas been completed on the exchange
+  PartiallyFilled: 'PRT', // The order is partially filled and is still on the exchange
+  Discarded: 'DIS', // Order discarded since there is already an order in place
+  Placed: 'PLA', // Order has been just been placed on the exchange
+  Rejected:'REJ', // Order has been rejected by the exchange due to some error
+  Undeliverable:'UND' // The order was not able to be delivered to the exchange
+}
+```
+
 ### Lifecycle for the Orders to exit a Trade
 
 The Simulation Executor will be managing the Stop and Take Profit levels according to the information that receives from the Simulation Engine. To do that, it places a Limit Order and a Stop Order at the Exchange through the Trading Assistant. As times goes by, it moves those orders according to the feed it is receiving from the Simulation Engine.

@@ -1,6 +1,6 @@
 {
   "name": "@superalgos/mqservice",
-  "version": "0.0.3",
+  "version": "0.0.12",
   "description": "Provide a common framework for objects between different modules.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Superalgos/issues"
   },
-  "homepage": "https://github.com/Superalgos/MQService#readme"
+  "homepage": "https://github.com/Superalgos/MQService#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
 }
