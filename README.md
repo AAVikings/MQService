@@ -55,7 +55,7 @@ let record = [
     155385234234,
     "U",
     "Poloniex",
-    "BTC/USDT",
+    "BTC_USDT",
     0,
     "L",
     6286.707,
@@ -131,7 +131,7 @@ const {
 
 let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
     MESSAGE_TYPE.Order, 1553850096262, 1, ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
-    "Poloniex", "BTC/USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
+    "Poloniex", "BTC_USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
     ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
 ```
 
