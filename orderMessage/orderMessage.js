@@ -1,22 +1,7 @@
-
-function newOrderRecord() {
-
-  let thisObject = {
-    MESSAGE_ENTITY: MESSAGE_ENTITY,
-    MESSAGE_TYPE: MESSAGE_TYPE,
-    ORDER_CREATOR: ORDER_CREATOR,
-    ORDER_TYPE: ORDER_TYPE,
-    ORDER_OWNER: ORDER_OWNER,
-    ORDER_DIRECTION: ORDER_DIRECTION,
-    ORDER_STATUS: ORDER_STATUS,
-    ORDER_EXIT_OUTCOME: ORDER_EXIT_OUTCOME,
-    createRecord: createRecord,
-    getRecord: getRecord,
-    getExpandedRecord: getExpandedRecord,
-    createRecordFromObject: createRecordFromObject
-  };
-
-  return thisObject
+/**
+ * This object is used in both the browser and server side code.
+ */
+exports.newOrderMessage = function newOrderMessage() {
 
   const MESSAGE_ENTITY = {
     SimulationExecutor: 'EX',
@@ -51,7 +36,25 @@ function newOrderRecord() {
   const ORDER_EXIT_OUTCOME = { StopLoss: 'SL', TakeProfit: 'TP' }
   const ORDER_MARGIN_ENABLED = { True: 1, False: 0 }
 
-  function createRecord(messageId, from, to, messageType, messageDateTime, orderId, creator, orderDateTime,
+  let thisObject = {
+    MESSAGE_ENTITY: MESSAGE_ENTITY,
+    MESSAGE_TYPE: MESSAGE_TYPE,
+    ORDER_CREATOR: ORDER_CREATOR,
+    ORDER_TYPE: ORDER_TYPE,
+    ORDER_OWNER: ORDER_OWNER,
+    ORDER_DIRECTION: ORDER_DIRECTION,
+    ORDER_STATUS: ORDER_STATUS,
+    ORDER_EXIT_OUTCOME: ORDER_EXIT_OUTCOME,
+    ORDER_MARGIN_ENABLED: ORDER_MARGIN_ENABLED,
+    createMessage: createMessage,
+    getMessage: getMessage,
+    getExpandedMessage: getExpandedMessage,
+    createMessageFromObject: createMessageFromObject
+  }
+
+  return thisObject
+
+  function createMessage(messageId, from, to, messageType, messageDateTime, orderId, creator, orderDateTime,
     owner, exchange, market, marginEnabled, type, rate, stop, takeProfit, direction, size, status, sizeFilled, exitOutcome) {
 
     return [
@@ -81,15 +84,15 @@ function newOrderRecord() {
     ]
   }
 
-  function createRecordFromObject(object) {
+  function createMessageFromObject(object) {
 
-    return createRecord(object.id, object.from, object.to, object.messageType, object.dateTime, object.order.id,
+    return createMessage(object.id, object.from, object.to, object.messageType, object.dateTime, object.order.id,
       object.order.creator, object.order.dateTime, object.order.owner, object.order.exchange, object.order.market,
       object.order.marginEnabled, object.order.type, object.order.rate, object.order.stop, object.order.takeProfit,
       object.order.direction, object.order.size, object.order.status, object.order.sizeFilled, object.order.exitOutcome)
   }
 
-  function getRecord(fileContent) {
+  function getMessage(fileContent) {
     let parsedFileContent = JSON.parse(fileContent)
 
     return {
@@ -119,7 +122,7 @@ function newOrderRecord() {
     }
   }
 
-  function getExpandedRecord(fileContent) {
+  function getExpandedMessage(fileContent) {
     let parsedFileContent = JSON.parse(fileContent)
 
     return {
