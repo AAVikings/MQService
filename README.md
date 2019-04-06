@@ -1,20 +1,20 @@
 # MQService
 
-The MQService is a process running at each Superalgos Node that enables the communication between system components in general. Components can send messages between them through this service or raise events for other to listen and react to them.
+The MQService is a process running at each Superalgos Node that enables the communication between system components in general. Components can send s between them through this service or raise events for other to listen and react to them.
 
 This does not mean to eliminate micro-service API access but to complement it. Well known components are better to be accesed thouth their static APIs. Components like bots instances, which are not allways running might prefer to communicate themselves through this MQService.
 
 ## Messages Formats
 
-We are going to be slowly transitioning the current infraestructure to use this messaging service. For the first set of use cases we already know a message format we will use and is the one described in this section. Expect this to be extended / improved as we move fordward.
+We are going to be slowly transitioning the current infraestructure to use this messaging service. For the first set of use cases we already know a  format we will use and is the one described in this section. Expect this to be extended / improved as we move fordward.
 
 ### Trading Orders related Messages
 
-With this format we will enable communications between the Simulation Engine, Simulation Executor, Trading Cockpit and Trading Assistant. We expect that messages flowing between these components to be in this agreed format, while messages logged into files should go through a minification process to save space. The minification process criteria is not the about taking the messages to their absolute minimun weight but to a balance where the weight is small but at the same time understandable by a human with enough context while reading them from a file.
+With this format we will enable communications between the Simulation Engine, Simulation Executor, Trading Cockpit and Trading Assistant. We expect that s flowing between these components to be in this agreed format, while s logged into files should go through a minification process to save space. The minification process criteria is not the about taking the s to their absolute minimun weight but to a balance where the weight is small but at the same time understandable by a human with enough context while reading them from a file.
 
 ```
 {
-  "id": 12345, // This is a unique Id within the system component that originated the message.
+  "id": 12345, // This is a unique Id within the system component that originated the .
   "from": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "EX|CO|EN|AS"
   "to": "Simulation Executor|Trading Cockpit|Simulation Engine|Trading Assistant", // --> "EX|CO|EN|AS"
   "messageType": "Heart Beat|Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "HBT|ARQ|ARS|ORD|UPT"
@@ -40,10 +40,10 @@ With this format we will enable communications between the Simulation Engine, Si
 }
 ```
 
-When writing this information in files for logging or audit purposes, we will turn int into an array of fields where the order of them is relevant. The following is a record example of how the previous object would be recorded into a file.
+When writing this information in files for logging or audit purposes, we will turn int into an array of fields where the order of them is relevant. The following is a message example of how the previous object would be recorded into a file.
 
 ```
-let record = [
+let  = [
   90,
   "EN",
   "EX",
@@ -122,29 +122,85 @@ npm install @superalgos/mqservice
 
 After npm install, use the following code to use the library.
 
+### 1) Import the Library
+#### a) On Web:
+```
+const orderMessage = require("@superalgos/mqservice/orderMessage/orderMessage")
+```
+#### b) On Server:
+```
+const { orderMessage } = require("@superalgos/mqservice")
+```
+### 2) Import Constants
 ```
 const {
   MESSAGE_ENTITY, MESSAGE_TYPE, ORDER_CREATOR, ORDER_TYPE,
   ORDER_OWNER, ORDER_DIRECTION, ORDER_STATUS, ORDER_EXIT_OUTCOME,
-  createRecord, getRecord, getExpandedRecord
-} = require("@superalgos/mqservice")
+  createMessage, getMessage, getExpandedMessage
+} = orderMessage.newOrderMessage()
+```
 
-let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
+### createMessage
+Returns an Array that can be used to write the information to a file.
+
+```
+let message = createMessage(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
     MESSAGE_TYPE.Order, 1553850096262, "1", ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
     "Poloniex", "BTC_USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
     ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
+// Returns:
+// [
+//   90,
+//   "EN",
+//   "EX",
+//   "ORD",
+//   1553850096262,
+//   [
+//     1,
+//     "S",
+```
+### createMessageFromObject
+Returns an Array that can be used to write the information to a file from the object received as a parameter.
+```
+let newMessage = {}
+newMessage.id = 136
+newMessage.from = MESSAGE_ENTITY.SimulationEngine
+newMessage.to = MESSAGE_ENTITY.SimulationExecutor
+newMessage.messageType = MESSAGE_TYPE.Order
+newMessage.dateTime = 1553850096262
+
+newMessage.order = {}
+newMessage.order.id = 1
+newMessage.order.creator = ORDER_CREATOR.SimulationEngine
+...
+
+let messageFromObject = createMessageFromObject(newMessage)
+// Returns: [136, "EN", "EX", "ORD", 1553850096262, [1, "S",
 ```
 
-### createRecord
+### getMessage
+Receives an array identical to the one created with createMessage and converts it to a JSON object with some fields values abbreviated.
+```
+let fileContent = '[90, "EN", "EX", "ORD", ...'
+let message = getMessage(fileContent)
+// Returns:
+// {
+//   "id": 90,
+//   "from": "EN",
+//   "to": "EX",
+//   "messageType": "ORD",
+```
 
-Returns an Array that can be used to write the information to a file.
-
-### getRecord
-
-Receives an array identical to the one created with createRecord and converts it to a JSON object with some fields values abbreviated.
-
-### getExpandedRecord
-
-Receives an array identical to the one created with createRecord and converts it to a JSON object with some fields values with full lenght.
-
+### getExpandedMessage
+Receives an array identical to the one created with createMessage and converts it to a JSON object with some fields values with full lenght.
+```
+let fileContent = '[90, "EN", "EX", "ORD", ...'
+let expandedMessage = getExpandedMessage(fileContent)
+// Returns:
+// {
+//   "id": 90,
+//   "from": "Simulation Engine",
+//   "to": "Simulation Executor",
+//   "messageType": "Order",
+```
 
