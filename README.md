@@ -20,7 +20,7 @@ With this format we will enable communications between the Simulation Engine, Si
   "messageType": "Heart Beat|Order Authorization Request|Order Authorization Response|Order|Order Update", // --> "HBT|ARQ|ARS|ORD|UPT"
   "dateTime": 1551579300000, // This is the timestamp of the message.
   "order": {
-    "id": 31231, // This is a unique Id within the system component that originated the order.
+    "id": "31231asbs", // This is a unique Id within the system component that originated the order.
     "creator": "Simulation Engine|Human Trader", // --> "S|H"
     "dateTime": 1551579300000, // This is the datetime when the order was created. After the order travels from one system componet to the other it becomes diffrent from the message.datetime.
     "owner": "Node/Team/User",  // --> "N|T|U" Once we have our login system at a node level, here it will come this info.
@@ -32,7 +32,7 @@ With this format we will enable communications between the Simulation Engine, Si
     "stop": 6463.62195162425,
     "takeProfit": 6463.62195162425,
     "direction": "Sell|Buy", // --> "Sell|Buy"
-    "size": "floating-point number|All", // All means to use all the available balance.
+    "size": floating-point number > 0 | -1, // -1 means to use all the available balance.
     "status": "Signaled|Manual Authorized|Manual Not Authorized|Auto Authorized|Auto Not Authorized|Executing|Cancelled|Filled|Partially Filled|Discarded|Placed", // --> "SIG|MAU|MNA|AAU|ANA|EXE|CAN|FIL|PRT|DIS|PLA"
     "sizeFilled": 0.00045,
     "exitOutcome": "Stop Loss|Take Profit" // --> "SL|TP"
@@ -50,19 +50,19 @@ let record = [
   "ORD",
   1553850096262,
   [
-    1,
+    "1",
     "S",
     155385234234,
     "U",
     "Poloniex",
-    "BTC/USDT",
+    "BTC_USDT",
     0,
     "L",
     6286.707,
     6381.007,
     0,
     "Sell",
-    0,
+    -1,
     "SIG",
     0,
     "SL"
@@ -76,7 +76,7 @@ Heartbeat example:
 [1,"EN","EX","HBT",1553850096045,[0,"","","","",0,"",0,0,0,"","","",0,""]]
 ```
 
-### Lifecycle for the Orders to enter a Trade
+### Lifecycle of Trading Orders while entering a Trade
 
 An order can be created by the Simulation Engine or by a Human Trader.
 
@@ -106,7 +106,7 @@ const ORDER_STATUS = {
 }
 ```
 
-### Lifecycle for the Orders to exit a Trade
+### Lifecycle Trading Orders while exiting a Trade
 
 The Simulation Executor will be managing the Stop and Take Profit levels according to the information that receives from the Simulation Engine. To do that, it places a Limit Order and a Stop Order at the Exchange through the Trading Assistant. As times goes by, it moves those orders according to the feed it is receiving from the Simulation Engine.
 
@@ -130,8 +130,8 @@ const {
 } = require("@superalgos/mqservice")
 
 let record = createRecord(90, MESSAGE_ENTITY.SimulationEngine, MESSAGE_ENTITY.SimulationExecutor,
-    MESSAGE_TYPE.Order, 1553850096262, 1, ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
-    "Poloniex", "BTC/USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
+    MESSAGE_TYPE.Order, 1553850096262, "1", ORDER_CREATOR.SimulationEngine, 155385234234, ORDER_OWNER.User,
+    "Poloniex", "BTC_USDT", 0, ORDER_TYPE.Limit, 6286.707, 6381.007, 0, ORDER_DIRECTION.Sell, 0,
     ORDER_STATUS.Signaled, 0, ORDER_EXIT_OUTCOME.StopLoss)
 ```
 
